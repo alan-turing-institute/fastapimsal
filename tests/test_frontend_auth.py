@@ -20,7 +20,6 @@ def client_frontend(**kwargs) -> TestClient:
 def request_path(
     client: TestClient, path: str, method: str = "get", **kwargs: Any
 ) -> requests.Response:
-
     """Request giving the name of route function
 
     Args:

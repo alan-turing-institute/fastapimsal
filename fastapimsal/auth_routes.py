@@ -1,6 +1,7 @@
 """
 Add routes to a FastAPI application to handle OAuth
 """
+
 import logging
 from typing import Dict, List, Optional
 
