@@ -23,7 +23,7 @@ repos:
     - id: safety
       name: Safety
       # Ignore pip vulnerability
-      entry: poetry run safety scan --policy-file .safety-policy.yml
+      entry: poetry run safety --stage cicd scan --policy-file .safety-policy.yml
       pass_filenames: false
       language: system
     - id: mypy
