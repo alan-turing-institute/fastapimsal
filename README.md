@@ -16,9 +16,19 @@ poetry install
 ```
 
 ### Pre-commit
+
 Run to make CI-tests pass
 ```bash
 poetry run pre-commit run --all-files
+```
+
+Note: `SAFETY_API_KEY` environment variable needs to be set to run
+the pre-commit hooks. Create an account with the [Safety package](https://platform.safetycli.com/)
+and then navigate to Organization > API keys to fetch the key. Once
+the key has been obtained, set the variable in your terminal using:
+
+```bash
+export SAFETY_API_KEY=your-api-key
 ```
 
 ## Examples
