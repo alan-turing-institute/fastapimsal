@@ -82,6 +82,10 @@ def create_auth_router(
             request.session.pop("flow", None)
 
             # Just store the oid (https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens) in a signed cookie
+            if result.get("error"):
+                raise RuntimeError(
+                    f"{result.get('error')}: {result.get('error_description')}"
+                )
             oid = result.get("id_token_claims").get("oid")
             await f_save_cache(oid, cache)
             request.session["user"] = oid
