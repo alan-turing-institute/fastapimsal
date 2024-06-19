@@ -26,6 +26,9 @@ report:
         67599:
             reason: Only applies if using private package repo.
             expires: '2026-04-17'
+        70612:
+          reason: No known fix for jinja2==3.1.4.
+          expires: '2024-12-12'
 
 
 fail-scan-with-exit-code:
