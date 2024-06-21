@@ -1,32 +1,32 @@
 [tool.poetry]
 name = "fastapimsal"
-version = "0.4.9"
+version = "0.5.0"
 description = "Library to authenticate users using MSAL"
 authors = ["Oscar Giles <ogiles@turing.ac.uk>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+anyio = "^4.4.0"
+async_lru = "^1.0.2"
+fastapi = "^0.111.0"
+httpx = "^0.23"
+itsdangerous = "^1.1.0"
+msal = "^1.10.0"
 pydantic = "^1.8.1"
 python-jose = {extras = ["cryptography"], version = "^3.2.0"}
-msal = "^1.10.0"
-itsdangerous = "^1.1.0"
-httpx = "^0.23"
-async_lru = "^1.0.2"
-fastapi = "^0.110.1"
 uvicorn = {version = "^0.17.6", extras = ["standard"]}
-anyio = "^4.4.0"
 
 [tool.poetry.dev-dependencies]
 black = "^24.4.0"
-pytest = "^7.2"
-isort = "^5.8.0"
-pylint = "^2.7.2"
 flake8 = "^5"
-mypy = "^1.1.1"
 httpie-jwt-auth = "^0.4.0"
 httpie = "3.2.1"  # addded to fix version to avoid SSL certificate vulnerability in 3.2.2
-safety = "^3.1.0"
+isort = "^5.8.0"
+mypy = "^1.1.1"
 pre-commit = "^2.14.1"
+pytest = "^7.2"
+pylint = "^2.7.2"
+safety = "^3.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
