@@ -3,3 +3,6 @@
 .vscode
 .auth.env
 *.pyc
+
+# Environments
+.env
