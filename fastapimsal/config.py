@@ -21,7 +21,7 @@ class AuthSettings(BaseSettings):
     scopes: List[str] = []
 
     # Settings for the settings class itself.
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(env_file=".auth.env", env_file_encoding="utf-8")
 
     @property
     def authority(self) -> str:
