@@ -35,8 +35,3 @@ repos:
       entry: poetry run pylint --rcfile=.python-lint
       language: system
       types: ["python"]
-    - id: flake8
-      name: Flake8
-      entry: poetry run flake8
-      language: system
-      types: ["python"]
