@@ -17,18 +17,21 @@ report:
         unpinned-requirements: true
       cvss-severity: []
       vulnerabilities:
-        64459:
-            reason: Python wide vulnerability.
-            expires: '2024-12-12'
-        64396:
-            reason: Python wide vulnerability.
-            expires: '2024-12-12'
         67599:
             reason: Only applies if using private package repo.
             expires: '2026-04-17'
-        70612:
-          reason: No known fix for jinja2==3.1.4.
-          expires: '2024-12-12'
+        64459:
+            reason: No Known fix.
+            expires: '2025-12-12'
+        64396:
+            reason: No Known fix.
+            expires: '2025-12-12'
+        70716:
+            reason: No Known fix.
+            expires: '2025-12-12'
+        70715:
+            reason: No Known fix.
+            expires: '2025-12-12'
 
 
 fail-scan-with-exit-code:
