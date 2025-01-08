@@ -1,11 +1,14 @@
-[tool.poetry]
+[project]
 name = "fastapimsal"
 version = "0.7.0"
 description = "Library to authenticate users using MSAL"
-authors = ["Oscar Giles <ogiles@turing.ac.uk>"]
+authors = [
+  {"name" = "Oscar Giles", "email"=" ogiles@turing.ac.uk"},
+]
+dynamic = [ "dependencies" ]
+requires-python = "^3.10"
 
 [tool.poetry.dependencies]
-python = "^3.10"
 anyio = "^4.4.0"
 async_lru = "^1.0.2"
 fastapi = "^0.115.6"
