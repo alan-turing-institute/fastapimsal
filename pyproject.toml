@@ -8,7 +8,7 @@ authors = [
 dynamic = [ "dependencies" ]
 requires-python = "^3.10"
 
-[tool.poetry.dependencies]
+[tool.poetry.group.main.dependencies]
 anyio = "^4.4.0"
 async_lru = "^1.0.2"
 fastapi = "^0.115.6"
