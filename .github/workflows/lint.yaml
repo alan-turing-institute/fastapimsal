@@ -66,6 +66,6 @@ jobs:
           python -m poetry install
 
       - name: Pre-Commit
-        uses: pre-commit/action@v2.0.3
+        uses: pre-commit/action@v3.0.1
         env:
           SAFETY_API_KEY: ${{ secrets.SAFETY_API_KEY }}
