@@ -668,14 +668,14 @@ socks = ["socksio (==1.*)"]
 
 [[package]]
 name = "httpie"
-version = "3.2.3"
+version = "3.2.4"
 description = "HTTPie: modern, user-friendly command-line HTTP client for the API era."
 optional = false
 python-versions = ">=3.7"
 groups = ["dev"]
 files = [
-    {file = "httpie-3.2.3-py3-none-any.whl", hash = "sha256:c7db00b1996704fd603c3eb50f736e76129ff4ac2f0b37897165f639dc2be0a8"},
-    {file = "httpie-3.2.3.tar.gz", hash = "sha256:bbb72b4c2ec738301dcb61018f93325e55bc2720977df9a6742745fa3db313c3"},
+    {file = "httpie-3.2.4-py3-none-any.whl", hash = "sha256:4bd0435cc4b9bca59501bc65089de96f3e93b393803f32a81951db62050ebf0b"},
+    {file = "httpie-3.2.4.tar.gz", hash = "sha256:302ad436c3dc14fd0d1b19d4572ef8d62b146bcd94b505f3c2521f701e2e7a2a"},
 ]
 
 [package.dependencies]
@@ -685,7 +685,7 @@ defusedxml = ">=0.6.0"
 multidict = ">=4.7.0"
 pip = "*"
 Pygments = ">=2.5.2"
-requests = {version = ">=2.22.0,<=2.31.0", extras = ["socks"]}
+requests = {version = ">=2.22.0", extras = ["socks"]}
 requests-toolbelt = ">=0.9.1"
 rich = ">=9.10.0"
 setuptools = "*"
@@ -2731,4 +2731,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "d58f2283657212d1518563174b22fabf0dbcc979181024e8f45d428acacdd0d3"
+content-hash = "fcec81852250b9f4029aaf7893dc4d88430e8a0b1ba09ce19f84ec1bc47e12e7"
