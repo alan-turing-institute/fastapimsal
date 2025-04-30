@@ -51,8 +51,8 @@ files = [
 lazy-object-proxy = ">=1.4.0"
 typing-extensions = {version = ">=4.0.0", markers = "python_version < \"3.11\""}
 wrapt = [
-    {version = ">=1.11,<2", markers = "python_version < \"3.11\""},
     {version = ">=1.14,<2", markers = "python_version >= \"3.11\""},
+    {version = ">=1.11,<2", markers = "python_version < \"3.11\""},
 ]
 
 [[package]]
@@ -668,14 +668,14 @@ socks = ["socksio (==1.*)"]
 
 [[package]]
 name = "httpie"
-version = "3.2.3"
+version = "3.2.4"
 description = "HTTPie: modern, user-friendly command-line HTTP client for the API era."
 optional = false
 python-versions = ">=3.7"
 groups = ["dev"]
 files = [
-    {file = "httpie-3.2.3-py3-none-any.whl", hash = "sha256:c7db00b1996704fd603c3eb50f736e76129ff4ac2f0b37897165f639dc2be0a8"},
-    {file = "httpie-3.2.3.tar.gz", hash = "sha256:bbb72b4c2ec738301dcb61018f93325e55bc2720977df9a6742745fa3db313c3"},
+    {file = "httpie-3.2.4-py3-none-any.whl", hash = "sha256:4bd0435cc4b9bca59501bc65089de96f3e93b393803f32a81951db62050ebf0b"},
+    {file = "httpie-3.2.4.tar.gz", hash = "sha256:302ad436c3dc14fd0d1b19d4572ef8d62b146bcd94b505f3c2521f701e2e7a2a"},
 ]
 
 [package.dependencies]
@@ -685,7 +685,7 @@ defusedxml = ">=0.6.0"
 multidict = ">=4.7.0"
 pip = "*"
 Pygments = ">=2.5.2"
-requests = {version = ">=2.22.0,<=2.31.0", extras = ["socks"]}
+requests = {version = ">=2.22.0", extras = ["socks"]}
 requests-toolbelt = ">=0.9.1"
 rich = ">=9.10.0"
 setuptools = "*"
@@ -1466,8 +1466,8 @@ files = [
 annotated-types = ">=0.6.0"
 pydantic-core = "2.23.4"
 typing-extensions = [
-    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
     {version = ">=4.12.2", markers = "python_version >= \"3.13\""},
+    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
 ]
 
 [package.extras]
@@ -1664,8 +1664,8 @@ files = [
 astroid = ">=2.15.8,<=2.17.0-dev0"
 colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
 dill = [
-    {version = ">=0.2", markers = "python_version < \"3.11\""},
     {version = ">=0.3.6", markers = "python_version >= \"3.11\""},
+    {version = ">=0.2", markers = "python_version < \"3.11\""},
 ]
 isort = ">=4.2.5,<6"
 mccabe = ">=0.6,<0.8"
@@ -2036,7 +2036,7 @@ description = "C version of reader, parser and emitter for ruamel.yaml derived f
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
-markers = "platform_python_implementation == \"CPython\" and python_version < \"3.13\""
+markers = "python_version < \"3.13\" and platform_python_implementation == \"CPython\""
 files = [
     {file = "ruamel.yaml.clib-0.2.12-cp310-cp310-macosx_13_0_arm64.whl", hash = "sha256:11f891336688faf5156a36293a9c362bdc7c88f03a8a027c2c1d8e0bcde998e5"},
     {file = "ruamel.yaml.clib-0.2.12-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:a606ef75a60ecf3d924613892cc603b154178ee25abb3055db5062da811fd969"},
@@ -2731,4 +2731,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "d58f2283657212d1518563174b22fabf0dbcc979181024e8f45d428acacdd0d3"
+content-hash = "fcec81852250b9f4029aaf7893dc4d88430e8a0b1ba09ce19f84ec1bc47e12e7"
