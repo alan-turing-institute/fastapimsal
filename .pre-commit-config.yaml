@@ -24,6 +24,7 @@ repos:
       name: Safety
       entry: poetry run safety --stage cicd scan --policy-file .safety-policy.yml
       pass_filenames: false
+      files: '(poetry\.lock|pyproject\.toml)'
       language: system
     - id: mypy
       name: MyPy
