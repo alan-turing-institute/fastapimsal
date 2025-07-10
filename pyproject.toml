@@ -1,6 +1,6 @@
 [project]
 name = "fastapimsal"
-version = "0.8.0"
+version = "0.9.0"
 description = "Library to authenticate users using MSAL"
 authors = [
   {"name" = "Oscar Giles", "email"=" ogiles@turing.ac.uk"},
@@ -11,7 +11,7 @@ requires-python = "^3.10"
 [tool.poetry.group.main.dependencies]
 anyio = "^4.4.0"
 async_lru = "^1.0.2"
-fastapi = "^0.115.6"
+fastapi = "^0.115.14"
 httpx = "^0.23"
 itsdangerous = "^1.1.0"
 msal = "^1.31.1"
