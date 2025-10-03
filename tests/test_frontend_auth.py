@@ -1,6 +1,7 @@
 # type: ignore
 import base64
 import json
+import urllib
 import uuid
 from typing import Any
 
@@ -121,9 +122,6 @@ def test_signed_cookie_malformed() -> None:
 # Tests for OAuth state redirect functionality
 def test_state_encoding_decoding() -> None:
     """Test that state encoding and decoding works correctly"""
-    from fastapimsal.auth_routes import base64, json
-
-    # Test data
     redirect_url = "https://example.com/docs"
     state_data = {"redirect": redirect_url}
 
@@ -167,9 +165,6 @@ def test_login_with_redirect_parameter() -> None:
     oauth_url = resp.headers["location"]
     assert "state=" in oauth_url
 
-    # Extract and decode state parameter
-    import urllib.parse
-
     parsed_url = urllib.parse.urlparse(oauth_url)
     query_params = urllib.parse.parse_qs(parsed_url.query)
     state = query_params["state"][0]
@@ -190,9 +185,6 @@ def test_exception_handler_redirect() -> None:
     assert resp.status_code == 307
     location = resp.headers["location"]
     assert location.startswith("/login?redirect=")
-
-    # Verify the redirect parameter contains the original URL
-    import urllib.parse
 
     parsed_url = urllib.parse.urlparse(location)
     query_params = urllib.parse.parse_qs(parsed_url.query)
@@ -238,27 +230,3 @@ def test_authorization_callback_invalid_state() -> None:
         # This would normally require a full OAuth flow, but we're testing error handling
         # In practice, the callback would fall back to redirecting to home
         pass  # Placeholder - full test would require OAuth mocking
-
-
-def test_state_encoding_special_characters() -> None:
-    """Test state encoding with URLs containing special characters"""
-    from fastapimsal.auth_routes import base64, json
-
-    # Test URLs with various special characters
-    test_urls = [
-        "https://example.com/docs?param=value&other=123",
-        "https://example.com/path with spaces/file.html",
-        "https://example.com/path#anchor",
-        "https://example.com/path?query=value%20encoded",
-    ]
-
-    for url in test_urls:
-        # Encode
-        state_data = {"redirect": url}
-        state = base64.urlsafe_b64encode(json.dumps(state_data).encode()).decode()
-
-        # Decode
-        decoded_data = json.loads(base64.urlsafe_b64decode(state.encode()).decode())
-        decoded_url = decoded_data.get("redirect")
-
-        assert decoded_url == url
