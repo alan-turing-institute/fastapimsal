@@ -67,5 +67,7 @@ def init_auth(
     async def exception_handler(
         request: Request, _: RequiresLoginException
     ) -> Response:
-        "Redirect to homepage if login fails"
-        return RedirectResponse(url=request.url_for(home_name))
+        "Redirect to login with original URL as redirect parameter"
+        login_url = request.url_for("login")
+        current_url = str(request.url)
+        return RedirectResponse(url=f"{login_url}?redirect={current_url}")
