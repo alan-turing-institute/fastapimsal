@@ -1,24 +1,24 @@
 [project]
 name = "fastapimsal"
-version = "0.9.0"
+version = "0.10.0"
 description = "Library to authenticate users using MSAL"
 authors = [
   {"name" = "Oscar Giles", "email"=" ogiles@turing.ac.uk"},
 ]
 dynamic = [ "dependencies" ]
-requires-python = "^3.10"
+requires-python = ">=3.10"
+dependencies = [
+    "anyio>=4.9.0,<5.0.0",
+    "async-lru>=1.0.3,<2.0.0",
+    "fastapi>=0.115.14,<0.116.0",
+    "httpx>=0.23.3,<0.24.0",
+    "itsdangerous>=1.1.0,<2.0.0",
+    "msal>=1.32.3,<2.0.0",
+    "pydantic>=2.9.2,<3.0.0",
+    "pydantic-settings>=2.10.1,<3.0.0",
+    "python-jose>=3.5.0,<4.0.0",
+]
 
-[tool.poetry.group.main.dependencies]
-anyio = "^4.4.0"
-async_lru = "^1.0.2"
-fastapi = "^0.115.14"
-httpx = "^0.23"
-itsdangerous = "^1.1.0"
-msal = "^1.31.1"
-pydantic = "^2.7.1"
-pydantic-settings = "^2.3.4"
-python-jose = {extras = ["cryptography"], version = "^3.4.0"}
-uvicorn = {version = "^0.34.2", extras = ["standard"]}
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.3.0"
