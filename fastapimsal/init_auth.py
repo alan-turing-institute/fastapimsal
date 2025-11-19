@@ -62,7 +62,6 @@ def init_auth(
     auth_router = create_auth_router(f_save_cache, f_remove_cache)
     app.include_router(auth_router, tags=["auth"])
 
-    # pylint: disable=W0612
     @app.exception_handler(RequiresLoginException)
     async def exception_handler(
         request: Request, _: RequiresLoginException

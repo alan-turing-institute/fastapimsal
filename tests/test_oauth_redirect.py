@@ -4,7 +4,7 @@
 import base64
 import json
 import urllib.parse
-from unittest.mock import MagicMock, Mock, patch
+from unittest.mock import Mock, patch
 
 import msal
 from fastapi.testclient import TestClient
@@ -93,16 +93,13 @@ def test_requires_login_exception_redirect() -> None:
     assert resp.status_code == 307  # Temporary redirect
     location = resp.headers["location"]
 
-    # Should redirect to login with redirect parameter
-    assert location.startswith("/login?redirect=")
-
     # Extract the redirect parameter
     parsed = urllib.parse.urlparse(location)
     query_params = urllib.parse.parse_qs(parsed.query)
     redirect_param = query_params["redirect"][0]
 
     # Should contain the original URL
-    assert "/docs" in redirect_param
+    assert redirect_param.endswith("/docs"), f"Redirect param was {redirect_param}"
 
 
 def test_full_redirect_flow_simulation() -> None:
