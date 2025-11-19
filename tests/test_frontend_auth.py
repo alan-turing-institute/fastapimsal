@@ -204,29 +204,7 @@ def test_authorization_callback_with_state() -> None:
 
     # Mock authorization callback (this would normally come from Microsoft)
     # Note: This test would need proper OAuth flow setup to work fully
-    resp = client.get(
-        f"/getAToken?state={state}&code=mock_code", follow_redirects=False
-    )
+    client.get(f"/getAToken?state={state}&code=mock_code", follow_redirects=False)
 
     # In a real scenario, this would redirect to the decoded URL
     # For now, we just test that the state parameter is handled
-
-
-def test_authorization_callback_invalid_state() -> None:
-    """Test that authorization callback handles invalid state gracefully"""
-    client = client_frontend()
-
-    # Test with malformed state
-    invalid_states = [
-        "invalid_base64!@#",
-        base64.urlsafe_b64encode(b"not json").decode(),
-        base64.urlsafe_b64encode(
-            json.dumps({"no_redirect": "value"}).encode()
-        ).decode(),
-        "",
-    ]
-
-    for invalid_state in invalid_states:
-        # This would normally require a full OAuth flow, but we're testing error handling
-        # In practice, the callback would fall back to redirecting to home
-        pass  # Placeholder - full test would require OAuth mocking
