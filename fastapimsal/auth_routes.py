@@ -45,9 +45,8 @@ def create_auth_router(
         state: Optional[str] = None,
     ) -> str:
 
-        flow: Dict[str, str] = build_msal_app(
-            authority=authority
-        ).initiate_auth_code_flow(
+        app = build_msal_app(authority=authority)
+        flow: Dict[str, str] = app.initiate_auth_code_flow(
             scopes,
             redirect_uri=_auth_uri(request),
             state=state,

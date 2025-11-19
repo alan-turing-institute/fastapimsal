@@ -6,7 +6,6 @@ import json
 import urllib.parse
 from unittest.mock import Mock, patch
 
-import msal
 from fastapi.testclient import TestClient
 
 from examples.app import app
@@ -18,13 +17,17 @@ def test_login_route_state_handling() -> None:
 
     # patch msal.ConfidentialClientApplication to avoid real OAuth calls
     with patch("fastapimsal.auth_routes.build_msal_app") as mock_build_msal_app:
-        mock_instance = Mock(spec_set=msal.ConfidentialClientApplication)
+        mock_app = Mock()
+        mock_app.initiate_auth_code_flow = lambda scopes, redirect_uri, state=None: {
+            "auth_uri": f"https://fakeurl/common/oauth2/v2.0/authorize?client_id=fake_client_id&redirect_uri={urllib.parse.quote(redirect_uri)}"
+            + (f"&state={state}" if state else ""),
+        }
 
         # mock_instance.initiate_auth_code_flow.return_value = {
         #     "auth_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=fake_client_id",
         #     "flow": "fake_flow_data",
         # }
-        mock_build_msal_app.return_value = mock_instance
+        mock_build_msal_app.return_value = mock_app
 
         # Test without redirect parameter
         resp = client.get("/login", follow_redirects=False)
@@ -48,10 +51,10 @@ def test_login_route_state_handling() -> None:
 
     # Should have state parameter
     assert "state" in query_params
-    state = query_params["state"][0]
+    the_state = query_params["state"][0]
 
     # Decode and verify state contains redirect URL
-    decoded = json.loads(base64.urlsafe_b64decode(state.encode()).decode())
+    decoded = json.loads(base64.urlsafe_b64decode(the_state.encode()).decode())
     assert decoded["redirect"] == redirect_url
 
 
