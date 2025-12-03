@@ -3,6 +3,7 @@
 .vscode
 .auth.env
 *.pyc
+*.swp
 
 # Environments
 .env

@@ -2,6 +2,8 @@
 Add routes to a FastAPI application to handle OAuth
 """
 
+import base64
+import json
 import logging
 from typing import Dict, List, Optional
 
@@ -40,13 +42,14 @@ def create_auth_router(
         request: Request,
         authority: Optional[str] = None,
         scopes: Optional[List[str]] = None,
+        state: Optional[str] = None,
     ) -> str:
 
-        flow: Dict[str, str] = build_msal_app(
-            authority=authority
-        ).initiate_auth_code_flow(
+        app = build_msal_app(authority=authority)
+        flow: Dict[str, str] = app.initiate_auth_code_flow(
             scopes,
             redirect_uri=_auth_uri(request),
+            state=state,
         )
         request.session["flow"] = flow
         return flow["auth_uri"]
@@ -55,7 +58,17 @@ def create_auth_router(
     @router.route("/login", include_in_schema=False)
     async def login(request: Request) -> RedirectResponse:
 
-        flow_uri = _auth_code_flow(request, scopes=get_auth_settings().scopes)
+        # Encode redirect URL in OAuth state parameter if provided
+        state = None
+        redirect_url = request.query_params.get("redirect")
+        if redirect_url:
+            # Encode the redirect URL in base64 for the state parameter
+            state_data = {"redirect": redirect_url}
+            state = base64.urlsafe_b64encode(json.dumps(state_data).encode()).decode()
+
+        flow_uri = _auth_code_flow(
+            request, scopes=get_auth_settings().scopes, state=state
+        )
 
         return RedirectResponse(url=flow_uri, status_code=302)
 
@@ -87,6 +100,23 @@ def create_auth_router(
             request.session["user"] = oid
         except ValueError as error:
             logging.debug("%s", error)
+
+        # Check for redirect URL in OAuth state parameter
+        redirect_url = None
+        state = request.query_params.get("state")
+        if state:
+            try:
+                # Decode the state parameter to get redirect URL
+                state_data = json.loads(
+                    base64.urlsafe_b64decode(state.encode()).decode()
+                )
+                redirect_url = state_data.get("redirect")
+            except (ValueError, json.JSONDecodeError):
+                # If state decoding fails, ignore and redirect to home
+                logging.warning("Failed to decode state parameter: %s", state)
+
+        if redirect_url:
+            return RedirectResponse(url=redirect_url, status_code=302)
 
         return RedirectResponse(url=request.url_for("home"), status_code=302)
 
