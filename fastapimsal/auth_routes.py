@@ -113,7 +113,7 @@ def create_auth_router(
                 redirect_url = state_data.get("redirect")
             except (ValueError, json.JSONDecodeError):
                 # If state decoding fails, ignore and redirect to home
-                logging.debug("Failed to decode state parameter: %s", state)
+                logging.warning("Failed to decode state parameter: %s", state)
 
         if redirect_url:
             return RedirectResponse(url=redirect_url, status_code=302)
