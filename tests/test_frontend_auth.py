@@ -1,4 +1,3 @@
-# type: ignore
 import base64
 import json
 import urllib
@@ -6,24 +5,25 @@ import uuid
 from typing import Any
 from unittest.mock import Mock, patch
 
+import httpx
 import itsdangerous
-import requests
 from fastapi.testclient import TestClient
 
 from examples.app import app
 from fastapimsal.config import get_auth_settings
 
 
-def client_frontend(**kwargs) -> TestClient:
+def client_frontend(**kwargs: Any) -> TestClient:
     return TestClient(app, **kwargs)
 
 
 def request_path(
     client: TestClient, path: str, method: str = "get", **kwargs: Any
-) -> requests.Response:
+) -> httpx.Response:
     """Request giving the name of route function
 
     Args:
+        client (TestClient): Your test client
         path (str): Route function name
         method (str, optional): HTTP Method. Defaults to "get".
 
@@ -34,7 +34,7 @@ def request_path(
     return client.request(url=app.url_path_for(path), method=method, **kwargs)
 
 
-def signed_session(session_secret: str) -> bytes:
+def signed_session(session_secret: str) -> Any:
 
     # Use the session cookie secret to self sign a cookie
     oid = str(uuid.uuid4())
@@ -170,7 +170,6 @@ def test_exception_handler_redirect() -> None:
     assert redirect_param.endswith("/docs"), f"Redirect param was {redirect_param}"
 
 
-# @pytest.mark.xfail(reason="Requires full OAuth flow which needs real credentials")
 def test_authorization_callback_with_state() -> None:
     """Test that authorization callback decodes state and redirects correctly"""
     client = client_frontend()
