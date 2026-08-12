@@ -28,9 +28,9 @@ repos:
       language: system
     - id: mypy
       name: MyPy
-      entry: poetry run mypy --install-types --non-interactive
+      entry: poetry run mypy --install-types --non-interactive .
       language: system
-      types: ["python"]
+      pass_filenames: false
     - id: pylint
       name: Pylint
       entry: poetry run pylint --rcfile=.python-lint
