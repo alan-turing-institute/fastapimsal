@@ -1,55 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    ":dependencyDashboard",
-    "schedule:weekly"
-  ],
-  "timezone": "Europe/London",
-  "labels": ["dependencies"],
-  "minimumReleaseAge": "3 days",
-  "pre-commit": {
-    "enabled": true
-  },
-  "vulnerabilityAlerts": {
-    "labels": ["security"]
-  },
-  "packageRules": [
-    {
-      "description": "We are a library: widen ranges so we don't force newer minimums on consumers",
-      "matchManagers": ["poetry"],
-      "matchDepTypes": ["dependencies"],
-      "rangeStrategy": "widen"
-    },
-    {
-      "description": "Dev tools are pinned exactly in pyproject.toml (there is no lock file), so keep them pinned",
-      "matchManagers": ["poetry"],
-      "matchDepTypes": ["dev"],
-      "rangeStrategy": "pin"
-    },
-    {
-      "description": "Automerge low-risk updates once CI passes",
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
-      "description": "One PR for dev tooling",
-      "matchManagers": ["poetry"],
-      "matchDepTypes": ["dev"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "dev dependencies"
-    },
-    {
-      "description": "One PR for CI and pre-commit tooling",
-      "matchManagers": ["github-actions", "pre-commit"],
-      "groupName": "ci tooling"
-    },
-    {
-      "description": "Python version bumps are deliberate: own PR, approved from the Dependency Dashboard, never automerged",
-      "matchDepNames": ["python"],
-      "groupName": "python",
-      "automerge": false,
-      "dependencyDashboardApproval": true
-    }
+    "github>alan-turing-institute/rctab//renovate/default",
+    "github>alan-turing-institute/rctab//renovate/library"
   ]
 }
