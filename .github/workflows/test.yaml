@@ -34,14 +34,14 @@ jobs:
       # Checkout the code base #
       ##########################
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
 
       ################
       # Setup Python #
       ################
       - name: Set up Python
         id: setup-python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -58,7 +58,7 @@ jobs:
           python -m poetry config virtualenvs.in-project true
 
       - name: Set up cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         id: cache
         with:
           path: .venv
