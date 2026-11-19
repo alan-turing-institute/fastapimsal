@@ -3,10 +3,10 @@
 from typing import Any, Dict, List, Optional
 
 import httpx2 as httpx
+import jwt
 from async_lru import alru_cache
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from jose import JWTError, jwt
 
 from ..config import get_auth_settings
 
@@ -68,20 +68,22 @@ class TokenVerifier:
 
         try:
             unverified_headers = jwt.get_unverified_header(token)
-            unverified_claims = jwt.get_unverified_claims(token)
+            unverified_claims = jwt.decode(token, options={"verify_signature": False})
             kid = unverified_headers.get("kid")
 
             # Verify the issuer
             self.check_issuer(unverified_claims["iss"])
             decoded_key = await self.get_key(kid)
 
+            # Pin the algorithm rather than trusting the token's header, which an
+            # attacker controls. Entra ID signs access tokens with RS256.
             token_decoded: Dict[str, Any] = jwt.decode(
                 token,
-                decoded_key,
-                algorithms=unverified_headers["alg"],
+                jwt.PyJWK(decoded_key, algorithm="RS256"),
+                algorithms=["RS256"],
                 audience=str(get_auth_settings().client_id),
             )
-        except JWTError:
+        except jwt.PyJWTError:
             if auto_error:
                 raise CREDENTIALS_EXCEPTION
             return None
