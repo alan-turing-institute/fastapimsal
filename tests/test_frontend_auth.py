@@ -73,7 +73,9 @@ def test_login() -> None:
         assert resp.headers["location"].startswith(base_url)
 
         # We should have added a 'flow' cookie required for the signin process
-        session_cookie = json.loads(base64.b64decode(resp.cookies["session"]).decode())
+        # Starlette signs the cookie as "<base64 payload>.<timestamp>.<signature>"
+        payload = resp.cookies["session"].rsplit(".", 2)[0]
+        session_cookie = json.loads(base64.b64decode(payload).decode())
         assert "redirect_uri=" in session_cookie["flow"]["auth_uri"]
         oauth_url = resp.headers["location"]
         parsed = urllib.parse.urlparse(oauth_url)
