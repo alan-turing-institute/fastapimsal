@@ -8,10 +8,6 @@
   "timezone": "Europe/London",
   "labels": ["dependencies"],
   "minimumReleaseAge": "3 days",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  },
   "pre-commit": {
     "enabled": true
   },
