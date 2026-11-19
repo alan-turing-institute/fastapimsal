@@ -14,7 +14,7 @@ on:
 jobs:
 
   # Label of the runner job
-  runner-job:
+  lint:
     # You must use a Linux environment when using service containers or container jobs
     runs-on: ubuntu-latest
 
@@ -33,6 +33,7 @@ jobs:
       # Setup Python #
       ################
       - name: Set up Python
+        id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
@@ -54,7 +55,7 @@ jobs:
         id: cache
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Check poetry.lock consistency
         shell: bash

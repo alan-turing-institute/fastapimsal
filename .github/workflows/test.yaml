@@ -15,9 +15,15 @@ on:
 jobs:
 
   # Label of the runner job
-  runner-job:
+  test:
     # You must use a Linux environment when using service containers or container jobs
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Keep in step with requires-python in pyproject.toml so the
+        # versions we claim to support are the versions we test.
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
 
     ##################
     # Load all steps #
@@ -34,9 +40,10 @@ jobs:
       # Setup Python #
       ################
       - name: Set up Python
+        id: setup-python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
 
       - name: Bootstrap poetry
         shell: bash
@@ -55,7 +62,7 @@ jobs:
         id: cache
         with:
           path: .venv
-          key: venv-${{ runner.os }}-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install dependencies
         shell: bash
