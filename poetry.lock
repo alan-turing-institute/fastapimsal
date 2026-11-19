@@ -57,14 +57,14 @@ files = [
 
 [[package]]
 name = "async-lru"
-version = "1.0.3"
-description = "Simple lru_cache for asyncio"
+version = "2.4.0"
+description = "Simple LRU cache for asyncio"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "async-lru-1.0.3.tar.gz", hash = "sha256:c2cb9b2915eb14e6cf3e717154b40f715bf90e596d73623677affd0d1fbcd32a"},
-    {file = "async_lru-1.0.3-py3-none-any.whl", hash = "sha256:ea692c303feb6211ff260d230dae1583636f13e05c9ae616eada77855b7f415c"},
+    {file = "async_lru-2.4.0-py3-none-any.whl", hash = "sha256:1b46a96419ef91fe11431d58db98d792c9b4250001427191a40faf1031934212"},
+    {file = "async_lru-2.4.0.tar.gz", hash = "sha256:b0b0077d9b7596615b3c12d0aad4f6aeccaaa0ac75ceae472608ede89e764c08"},
 ]
 
 [[package]]
@@ -2705,4 +2705,4 @@ python-discovery = ">=1.6.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4"
-content-hash = "f72dc4469a82a0515b81cb127fee3526a53d32c43047cbd86c278868ee418b2d"
+content-hash = "dec202daa2dcc741abbaa1995e1a6581a4085d5c6e10800fb6a447cea267bba4"
