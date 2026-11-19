@@ -6,11 +6,11 @@ authors = [
   {"name" = "Oscar Giles", "email"=" ogiles@turing.ac.uk"},
 ]
 dynamic = [ "dependencies" ]
-requires-python = ">=3.10,<4"
+requires-python = ">=3.11,<4"
 dependencies = [
     "anyio>=4.9.0,<5.0.0",
     "async-lru>=1.0.3,<2.0.0",
-    "fastapi>=0.139.0,<0.140.0",
+    "fastapi>=0.139.0,<1.0.0",
     "itsdangerous>=1.1.0,<2.0.0",
     "msal>=1.37.0,<2.0.0",
     "pydantic>=2.9.2,<3.0.0",
