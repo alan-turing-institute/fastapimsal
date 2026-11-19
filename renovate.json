@@ -22,6 +22,12 @@
       "rangeStrategy": "widen"
     },
     {
+      "description": "Dev tools are pinned exactly in pyproject.toml (there is no lock file), so keep them pinned",
+      "matchManagers": ["poetry"],
+      "matchDepTypes": ["dev"],
+      "rangeStrategy": "pin"
+    },
+    {
       "description": "Automerge low-risk updates once CI passes",
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
