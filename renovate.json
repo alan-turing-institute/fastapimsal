@@ -3,5 +3,8 @@
   "extends": [
     "github>alan-turing-institute/rctab//renovate/default",
     "github>alan-turing-institute/rctab//renovate/library"
-  ]
+  ],
+  "pre-commit": {
+    "managerFilePatterns": ["/(^|/)\\.pre-commit-safety\\.ya?ml$/"]
+  }
 }
