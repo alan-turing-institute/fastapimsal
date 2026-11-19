@@ -21,16 +21,18 @@ dependencies = [
 
 
 [tool.poetry.group.dev.dependencies]
-black = "^26.5.0"
-flake8 = "^7.0.0"
-httpie-jwt-auth = "^0.4.0"
-httpie = "^3.2.4"
-isort = "^9.0.0"
-mypy = "^2.0.0"
-pre-commit = "^4.2.0"
-pytest = "^9.1"
-pylint = "^4.0.0"
-safety = "^3.8.0"
+# Exact pins: with no lock file, Renovate bumps these in PRs so that new
+# linter releases can't break CI unannounced.
+black = "26.10.1"
+flake8 = "7.5.0"
+httpie-jwt-auth = "0.4.0"
+httpie = "3.2.4"
+isort = "9.0.2"
+mypy = "2.4.1"
+pre-commit = "4.7.0"
+pytest = "9.2.0"
+pylint = "4.1.4"
+safety = "3.8.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
