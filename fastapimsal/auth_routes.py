@@ -94,6 +94,18 @@ def create_auth_router(
             # Remove flow cookie
             request.session.pop("flow", None)
 
+            if result.get("error"):
+                message = f"{result.get('error')}: {result.get('error_description')}"
+                # invalid_client means the app's own credentials were rejected,
+                # e.g. an expired (AADSTS7000222) or invalid (AADSTS7000215) client
+                # secret. Retrying won't help so surface it to the developer.
+                if result.get("error") == "invalid_client":
+                    raise RuntimeError(message)
+                # Other errors (e.g. the user declined consent, or the auth code
+                # was reused) are recoverable by signing in again
+                logging.warning("%s", message)
+                return RedirectResponse(url=request.url_for("home"), status_code=302)
+
             # Just store the oid (https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens) in a signed cookie
             oid = result.get("id_token_claims").get("oid")
             await f_save_cache(oid, cache)
