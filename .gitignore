@@ -7,3 +7,6 @@
 
 # Environments
 .env
+
+# We are a library, so consumers resolve from the ranges in pyproject.toml
+poetry.lock
