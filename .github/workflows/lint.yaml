@@ -57,5 +57,3 @@ jobs:
 
       - name: Pre-Commit
         uses: pre-commit/action@v3.0.1
-        env:
-          SAFETY_API_KEY: ${{ secrets.SAFETY_API_KEY }}

@@ -32,7 +32,6 @@ mypy = "2.4.1"
 pre-commit = "4.7.0"
 pytest = "9.2.0"
 pylint = "4.1.4"
-safety = "3.8.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
