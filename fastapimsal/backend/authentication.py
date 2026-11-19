@@ -2,7 +2,7 @@
 
 from typing import Any, Dict, List, Optional
 
-import httpx
+import httpx2 as httpx
 from async_lru import alru_cache
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer

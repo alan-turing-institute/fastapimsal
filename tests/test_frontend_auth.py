@@ -5,7 +5,7 @@ import uuid
 from typing import Any
 from unittest.mock import Mock, patch
 
-import httpx
+import httpx2 as httpx
 import itsdangerous
 from fastapi.testclient import TestClient
 
